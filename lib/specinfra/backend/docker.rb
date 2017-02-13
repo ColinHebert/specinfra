@@ -87,6 +87,7 @@ module Specinfra
 
       def docker_run!(cmd, opts={})
         opts.merge!(get_config(:docker_container_exec_options) || {})
+        warn cmd
         stdout, stderr, status = @container.exec([cmd], opts)
 
         CommandResult.new :stdout => stdout.join, :stderr => stderr.join,
